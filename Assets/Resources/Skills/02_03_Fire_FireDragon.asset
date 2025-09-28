@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd43d3c2922f7064091a53e39f383fa9, type: 3}
+  m_Name: 02_03_Fire_FireDragon
+  m_EditorClassIdentifier: 
+  skillName: Fire Dragon
+  skillType: 3
+  element: 101
+  maxLevel: 99
+  description: "\uD654\uB8E1\uC774 \uD544\uB4DC \uC704\uB97C \uC9C0\uB098\uAC10\n\uD544\uB4DC\uC5D0
+    \uC788\uB294 \uBAA8\uB4E0 \uC801\uC744 1\uD68C \uACF5\uACA9\uD568"
+  disableIcon: {fileID: 21300000, guid: 70eecf50563746547afe74156a2cfc20, type: 3}
+  enableIcon: {fileID: 21300000, guid: 32e1dd4ad1b8d5647b0ae58df052c4a8, type: 3}
+  buffStatList: []
+  attackBaseStats:
+  - statType: 0
+    maxValue: 9999
+    minValue: 500
+    defaultValue: 500
+    bonusValue: 0
+  - statType: 1
+    maxValue: 14
+    minValue: 7
+    defaultValue: 14
+    bonusValue: 0
+  - statType: 8
+    maxValue: 1
+    minValue: 1
+    defaultValue: 1
+    bonusValue: 0
+  attackBuffStats:
+  - statType: 0
+    maxValue: 0
+    minValue: 0
+    defaultValue: 250
+    bonusValue: 0
+  - statType: 1
+    maxValue: 0
+    minValue: 0
+    defaultValue: -0.2
+    bonusValue: 0
+  projectile: {fileID: 8757067907445169672, guid: e0d3a9a458b9ddf40abcd3efa46a884f, type: 3}

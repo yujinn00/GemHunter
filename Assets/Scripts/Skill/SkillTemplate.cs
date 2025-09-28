@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SkillType { Buff = 0, Emission, Sustained, }
+public enum SkillType { Buff = 0, Emission, Sustained, Global, }
 public enum SkillElement { None = -1, Ice = 100, Fire, Wind, Light, Dark, Count = 5 }
 
 // 클래스 상단에 CreateAssetMenu 어트리뷰트를 작성하면 Project View의 생성("+") 메뉴에 메뉴로 등록됨.

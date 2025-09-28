@@ -35,6 +35,10 @@ public class SkillSystem : MonoBehaviour
             {
                 skill = new SkillSustained();
             }
+            else if (item.Value.skillType.Equals(SkillType.Global))
+            {
+                skill = new SkillGlobal();
+            }
 
             skill.Setup(item.Value, owner, skillSpawnPoint);
             skills.Add(item.Key, skill);

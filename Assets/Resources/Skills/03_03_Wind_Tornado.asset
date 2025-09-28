@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd43d3c2922f7064091a53e39f383fa9, type: 3}
+  m_Name: 03_03_Wind_Tornado
+  m_EditorClassIdentifier: 
+  skillName: Tornado
+  skillType: 3
+  element: 102
+  maxLevel: 99
+  description: "\uC6D4\uB4DC\uC5D0 \uD1A0\uB124\uC774\uB3C4 \uC0DD\uC131\n\uD1A0\uB124\uC774\uB3C4
+    \uC0AC\uC815\uAC70\uB9AC\uC5D0 \uC788\uB294 \uC801\uC744 \uC8FC\uAE30\uC801\uC73C\uB85C
+    \uACF5\uACA9"
+  disableIcon: {fileID: 21300000, guid: 29d899665fc11e149969a2c79279ce07, type: 3}
+  enableIcon: {fileID: 21300000, guid: f70cde6d540abd546a24b426908dd865, type: 3}
+  buffStatList: []
+  attackBaseStats:
+  - statType: 0
+    maxValue: 9999
+    minValue: 80
+    defaultValue: 80
+    bonusValue: 0
+  - statType: 1
+    maxValue: 12
+    minValue: 6
+    defaultValue: 12
+    bonusValue: 0
+  - statType: 8
+    maxValue: 1
+    minValue: 1
+    defaultValue: 1
+    bonusValue: 0
+  - statType: 9
+    maxValue: 5
+    minValue: 3
+    defaultValue: 3
+    bonusValue: 0
+  - statType: 10
+    maxValue: 0.25
+    minValue: 0.25
+    defaultValue: 0.25
+    bonusValue: 0
+  attackBuffStats:
+  - statType: 0
+    maxValue: 0
+    minValue: 0
+    defaultValue: 40
+    bonusValue: 0
+  - statType: 1
+    maxValue: 0
+    minValue: 0
+    defaultValue: -0.2
+    bonusValue: 0
+  - statType: 9
+    maxValue: 0
+    minValue: 0
+    defaultValue: 0.25
+    bonusValue: 0
+  projectile: {fileID: 3363784155271068827, guid: 6f6dc0f5591e0c045b2ac177f7a04fc8, type: 3}
