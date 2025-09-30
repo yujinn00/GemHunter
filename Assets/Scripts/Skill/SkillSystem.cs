@@ -12,6 +12,8 @@ public class SkillSystem : MonoBehaviour
     private PlayerBase owner;
 
     private Dictionary<string, SkillBase> skills = new Dictionary<string, SkillBase>();
+    private Dictionary<SkillElement, int> elementalCounts = new Dictionary<SkillElement, int>();
+    private Dictionary<SkillElement, SkillBase> elementalSkills = new Dictionary<SkillElement, SkillBase>();
 
     private void Awake()
     {
@@ -45,6 +47,19 @@ public class SkillSystem : MonoBehaviour
 
             // 습득한 모든 스킬의 이름, 레벨, 설명 출력 [Debug].
             Logger.Log($"[{skill.SkillName}] Lv. {skill.CurrentLevel}\n{skill.Description}");
+        }
+
+        // 속성 보너스 스킬 등록.
+        var eSkillDict = Resources.LoadAll<SkillTemplate>("ElementalSkills/").ToDictionary(item => item.name, item => item);
+        foreach (var item in eSkillDict)
+        {
+            SkillBase skill = new SkillBuff();
+            skill.Setup(item.Value, owner, skillSpawnPoint);
+
+            elementalCounts.Add(item.Value.element, 0);         // 각 속성 스킬의 레벨 카운트.
+            elementalSkills.Add(item.Value.element, skill);     // 각 속성 보너스 스킬 (SkillBase).
+
+            Logger.Log($"{item.Value.element}, {item.Value.skillName}");
         }
     }
 
@@ -89,6 +104,16 @@ public class SkillSystem : MonoBehaviour
         {
             skill.TryLevelUp();
             Logger.Log($"Level Up [{skill.SkillName}] {skill.Element}, Lv. {skill.CurrentLevel}");
+
+            // 해당 스킬이 소속된 속성의 총 스킬 레벨 합 +1.
+            elementalCounts[skill.Element]++;
+
+            // 해당 스킬의 속성 보너스 레벨 증가 여부 판단.
+            if (elementalCounts[skill.Element] % 3 == 0)
+            {
+                elementalSkills[skill.Element].TryLevelUp();
+                Logger.Log($"{skill.Element} Lv. {elementalSkills[skill.Element].CurrentLevel}");
+            }
         }
     }
 

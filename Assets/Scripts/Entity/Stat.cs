@@ -84,4 +84,7 @@ public class Stat
 // 속성 공격력, 속성 저항 등 새로운 스탯을 추가하고 싶을 때,
 // StatType 열거형에 변수를 추가하고, Inspector View에서 해당 스탯 정보를 설정함.
 public enum StatType { Damage = 0, CooldownTime, CriticalChance, CriticalMultiplier, HP, Evasion,
-                       MetastatisCount, HPRecovery, ProjectileCount, Duration, AttackRate, }
+                       MetastatisCount, HPRecovery, ProjectileCount, Duration, AttackRate,
+
+                       IceElementalBonus = 100, FireElementalBonus, WindElementalBonus,
+                       LightElementalBonus, DarkElementalBonus }

@@ -69,6 +69,14 @@ public abstract class SkillBase
         }
     }
 
+    protected float CalculateDamage()
+    {
+        float damage = GetStat(StatType.Damage).Value;
+        damage += damage * owner.Stats.GetStat((StatType)Element).Value;
+
+        return damage;
+    }
+
     public abstract void OnLevelUp();   // 스킬 레벨업 시 1회 호출.
     public abstract void OnSkill();     // 스킬 사용 시 호출.
 }

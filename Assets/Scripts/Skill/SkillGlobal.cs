@@ -24,7 +24,7 @@ public class SkillGlobal : SkillBase
         {
             // Global 스킬 발사체 생성.
             GameObject projectile = GameObject.Instantiate(skillTemplate.projectile, spawnPoint.position, Quaternion.identity);
-            projectile.GetComponent<ProjectileGlobal>().Setup(this, GetStat(StatType.Damage).Value);
+            projectile.GetComponent<ProjectileGlobal>().Setup(this, CalculateDamage());
 
             // 쿨타임 재계산.
             isSkillAvailable = false;
