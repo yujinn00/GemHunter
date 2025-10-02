@@ -8,6 +8,8 @@ public class SkillSystem : MonoBehaviour
     private SkillGad skillGad;
     [SerializeField]
     private Transform skillSpawnPoint;
+    [SerializeField]
+    private UISkillList uiSkillList;
 
     private PlayerBase owner;
 
@@ -61,6 +63,8 @@ public class SkillSystem : MonoBehaviour
 
             Logger.Log($"{item.Value.element}, {item.Value.skillName}");
         }
+
+        uiSkillList.Setup(skillDict, eSkillDict);
     }
 
     private void Update()
@@ -103,6 +107,7 @@ public class SkillSystem : MonoBehaviour
         if (skills.ContainsValue(skill))
         {
             skill.TryLevelUp();
+            uiSkillList.LevelUp(skill);
             Logger.Log($"Level Up [{skill.SkillName}] {skill.Element}, Lv. {skill.CurrentLevel}");
 
             // 해당 스킬이 소속된 속성의 총 스킬 레벨 합 +1.
@@ -112,6 +117,7 @@ public class SkillSystem : MonoBehaviour
             if (elementalCounts[skill.Element] % 3 == 0)
             {
                 elementalSkills[skill.Element].TryLevelUp();
+                uiSkillList.LevelUp(elementalSkills[skill.Element]);
                 Logger.Log($"{skill.Element} Lv. {elementalSkills[skill.Element].CurrentLevel}");
             }
         }
