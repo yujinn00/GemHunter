@@ -35,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
             int index = Random.Range(0, possibleTiles.Count);
 
             GameObject clone = Instantiate(enemyPrefabs[type], possibleTiles[index], Quaternion.identity, transform);
-            clone.GetComponent<EnemyBase>().Initialize(parentTransform);
+            clone.GetComponent<EnemyBase>().Initialize(this, parentTransform);
             clone.GetComponent<EnemyFSM>().Setup(target);
 
             // 생성한 적의 정보를 리스트에 추가.
@@ -70,5 +70,14 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Deactivate(EntityBase enemy)
+    {
+        // 매개변수로 받아온 적(enemy)을 Enemies 리스트에서 삭제함.
+        Enemies.Remove(enemy);
+
+        // 월드에 있는 적 오브젝트(enemy.gameObject)를 삭제함.
+        Destroy(enemy.gameObject);
     }
 }

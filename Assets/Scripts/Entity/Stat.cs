@@ -85,6 +85,6 @@ public class Stat
 // StatType 열거형에 변수를 추가하고, Inspector View에서 해당 스탯 정보를 설정함.
 public enum StatType { Damage = 0, CooldownTime, CriticalChance, CriticalMultiplier, HP, Evasion,
                        MetastatisCount, HPRecovery, ProjectileCount, Duration, AttackRate,
-
+                       Level, Experience,
                        IceElementalBonus = 100, FireElementalBonus, WindElementalBonus,
                        LightElementalBonus, DarkElementalBonus }

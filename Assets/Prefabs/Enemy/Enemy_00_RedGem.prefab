@@ -160,8 +160,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    level: 1
-    exp: 0
+    currentExp:
+      statType: 12
+      maxValue: 9999
+      minValue: 0
+      defaultValue: 10
+      bonusValue: 0
     currentHP:
       statType: 4
       maxValue: 9999
@@ -198,6 +202,11 @@ MonoBehaviour:
       maxValue: 0.9
       minValue: 0
       defaultValue: 0.05
+      bonusValue: 0
+    - statType: 11
+      maxValue: 9999
+      minValue: 1
+      defaultValue: 1
       bonusValue: 0
   middlePoint: {fileID: 7819338995661679783}
   hudPoint: {fileID: 9007967826071200841}

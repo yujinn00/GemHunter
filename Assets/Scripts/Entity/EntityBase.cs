@@ -1,7 +1,7 @@
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
-public class EntityBase : MonoBehaviour
+public abstract class EntityBase : MonoBehaviour
 {
     [SerializeField]
     private EntityStats stats;
@@ -36,7 +36,12 @@ public class EntityBase : MonoBehaviour
 
         if (Mathf.Approximately(Stats.CurrentHP.DefaultValue, 0f))
         {
-            // 사망 처리.
+            // Entity 사망 처리.
+            OnDie();
         }
     }
+
+    // 사망했을 때의 처리는 플레이어와 적에 따라 다르기 때문에,
+    // 자식 클래스에서 재정의하도록 추상 메소드를 정의함.
+    protected abstract void OnDie();
 }

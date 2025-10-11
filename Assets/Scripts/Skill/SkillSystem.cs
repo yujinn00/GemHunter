@@ -23,6 +23,10 @@ public class SkillSystem : MonoBehaviour
     private Dictionary<SkillElement, int> elementalCounts = new Dictionary<SkillElement, int>();
     private Dictionary<SkillElement, SkillBase> elementalSkills = new Dictionary<SkillElement, SkillBase>();
 
+    // 현재 스킬이 선택 중인지 여부를 외부에서 열람할 수 있도록 IsSelectSkill 프로퍼티를 정의함.
+    // 상태 설정은 SkillSystem 내부에서만 할 수 있도록 private로 설정함.
+    public bool IsSelectSkill { get; private set; } = false;
+
     private void Awake()
     {
         owner = GetComponent<PlayerBase>();
@@ -131,6 +135,8 @@ public class SkillSystem : MonoBehaviour
 
     public void StartSelectSkill()
     {
+        IsSelectSkill = true;
+
         // 스킬 선택 중에는 일시정지.
         gameController.SetTimeScale(0);
 
@@ -151,6 +157,7 @@ public class SkillSystem : MonoBehaviour
         LevelUp(skill);                     // 스킬 레벨업.
         uiSelectSkill.EndSelectSkillUI();   // 스킬 선택 UI 비활성화.
         gameController.SetTimeScale(1);     // 게임 재개.
+        IsSelectSkill = false;
     }
 
     private List<SkillBase> GetRandomSkills(Dictionary<string, SkillBase> skills, int count = 3)
