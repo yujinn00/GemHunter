@@ -5,11 +5,13 @@ using TMPro;
 public class UIPlayerData : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI textLevel;  // 현재 레벨을 Text UI에 출력하기 위한 변수.
+    private TextMeshProUGUI textLevel;      // 현재 레벨을 Text UI에 출력하기 위한 변수.
     [SerializeField]
-    private Image fillGaugeEXP;         // 현재 경험치를 Image UI에 출력하기 위한 변수.
+    private Image fillGaugeEXP;             // 현재 경험치를 Image UI에 출력하기 위한 변수.
     [SerializeField]
-    private PlayerBase entity;          // 레벨, 경험치 정보를 가지고 있는 변수.
+    private TextMeshProUGUI textGEMCount;   // 게임 화면에 GEM 개수를 출력하기 위한 변수.
+    [SerializeField]
+    private PlayerBase entity;              // 레벨, 경험치 정보를 가지고 있는 변수.
 
     private void Awake()
     {
@@ -23,5 +25,10 @@ public class UIPlayerData : MonoBehaviour
 
         // 플레이어의 현재 경험치를 Image UI에 출력.
         fillGaugeEXP.fillAmount = entity.Stats.CurrentExp.Value / entity.Stats.GetStat(StatType.Experience).Value;
+    }
+
+    public void UpdateGEM()
+    {
+        textGEMCount.text = entity.GEM.ToString();
     }
 }

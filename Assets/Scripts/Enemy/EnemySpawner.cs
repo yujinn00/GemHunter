@@ -11,6 +11,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private Transform parentTransform;
     [SerializeField]
+    private GemCollector gemCollector;
+    [SerializeField]
     private EntityBase target;
     [SerializeField]
     private int enemyCount = 10;
@@ -35,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
             int index = Random.Range(0, possibleTiles.Count);
 
             GameObject clone = Instantiate(enemyPrefabs[type], possibleTiles[index], Quaternion.identity, transform);
-            clone.GetComponent<EnemyBase>().Initialize(this, parentTransform);
+            clone.GetComponent<EnemyBase>().Initialize(this, parentTransform, gemCollector);
             clone.GetComponent<EnemyFSM>().Setup(target);
 
             // 생성한 적의 정보를 리스트에 추가.

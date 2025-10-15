@@ -16,6 +16,8 @@ public class PlayerBase : EntityBase
     public bool IsMoved { get; set; } = false;
     // 적을 죽이고 축적된 경험치.
     public float AccumulationExp { get; set; } = 0f;
+    // 현재 스테이지에서 획득한 보석 개수.
+    public int GEM { get; private set; } = 0;
 
     private void Awake()
     {
@@ -83,10 +85,11 @@ public class PlayerBase : EntityBase
         }
     }
 
-    // 경험치 게이지가 점진적으로 채워지도록 적이 사망할 때 플레이어 경험치를 바로 증가시키지 않고,
-    // 별도의 프로퍼티(AccumulationExp)에 경험치를 축적해 매 프레임 원하는 수치(expAmount)만큼 경험치가 채워지도록 함.
     private void UpdateExp()
     {
+        // 경험치 게이지가 점진적으로 채워지도록 적이 사망할 때 플레이어 경험치를 바로 증가시키지 않고,
+        // 별도의 프로퍼티(AccumulationExp)에 경험치를 축적해 매 프레임 원하는 수치(expAmount)만큼 경험치가 채워지도록 함.
+
         // 축적된 경험치가 없거나 현재 스킬을 선택 중이면 경험치가 채워지지 않도록 리턴함.
         if (Mathf.Approximately(AccumulationExp, 0f) || skillSystem.IsSelectSkill == true)
         {
@@ -124,5 +127,10 @@ public class PlayerBase : EntityBase
 
         // 레벨업 할 때 스킬을 출력할 수 있도록 선택 팝업 출력.
         skillSystem.StartSelectSkill();
+    }
+
+    public void AddGEM()
+    {
+        GEM++;
     }
 }
