@@ -22,6 +22,17 @@ public class EnemySpawner : MonoBehaviour
 
     public static List<EntityBase> Enemies {  get; private set; } = new List<EntityBase>();
 
+    // 적이 사용하는 하나의 순찰 경로를 저장할 구조체.
+    [System.Serializable]
+    private struct WayPointData
+    {
+        // 순찰 경로 오브젝트들을 저장할 배열 변수.
+        public GameObject[] wayPoints;
+    }
+    // 순찰 경로를 여러 개 생성해두고, 적마다 임의의 경로를 선택할 수 있도록 하기 위한 위 구조체 타입의 배열 변수.
+    [SerializeField]
+    private WayPointData[] wayPointData;
+
     private void Awake()
     {
         // Tilemap의 Bounds 재설정 (맵을 수정했을 때 Bounds가 변경되지 않는 문제 해결).
@@ -35,10 +46,11 @@ public class EnemySpawner : MonoBehaviour
         {
             int type = Random.Range(0, enemyPrefabs.Length);
             int index = Random.Range(0, possibleTiles.Count);
+            int wayIndex = Random.Range(0, wayPointData.Length);
 
             GameObject clone = Instantiate(enemyPrefabs[type], possibleTiles[index], Quaternion.identity, transform);
             clone.GetComponent<EnemyBase>().Initialize(this, parentTransform, gemCollector);
-            clone.GetComponent<EnemyFSM>().Setup(target);
+            clone.GetComponent<EnemyFSM>().Setup(target, wayPointData[wayIndex].wayPoints);
 
             // 생성한 적의 정보를 리스트에 추가.
             Enemies.Add(clone.GetComponent<EntityBase>());
