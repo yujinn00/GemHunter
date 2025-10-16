@@ -12,7 +12,7 @@ public class GemCollectEffect : MonoBehaviour
 
     private void Awake()
     {
-         mainCamera = Camera.main;
+        mainCamera = Camera.main;
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
