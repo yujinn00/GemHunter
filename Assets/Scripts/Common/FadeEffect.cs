@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 public static class FadeEffect
 {
@@ -30,6 +31,30 @@ public static class FadeEffect
 
         // 페이드 효과 재생이 완료되면 action에 메소드가 들어있는지 null 검사를 진행하고,
         // null이 아니면 해당 메소드를 실행함.
+        action?.Invoke();
+    }
+
+    // 위 함수에서 첫 번째 인자만 바꿈.
+    public static IEnumerator Fade(TextMeshProUGUI target, float start, float end, float fadeTime = 1f, UnityAction action = null)
+    {
+        if (target == null)
+        {
+            yield break;
+        }
+
+        float percent = 0;
+
+        while (percent < 1)
+        {
+            percent += Time.deltaTime / fadeTime;
+
+            Color color = target.color;
+            color.a = Mathf.Lerp(start, end, percent);
+            target.color = color;
+
+            yield return null;
+        }
+
         action?.Invoke();
     }
 }
