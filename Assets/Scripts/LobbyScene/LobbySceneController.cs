@@ -34,8 +34,8 @@ public class LobbySceneController : MonoBehaviour
             return;
         }
 
-        // 챕터가 해금되어 있으면 선택된 챕터 정보를 Console View에 출력하고 Game 씬을 로드함.
-        Logger.Log($"챕터 {index + 1}을(를) 시작합니다.");
+        // 선택한 챕터 숫자를 PlayerPrefs를 이용해 저장하고, Game 씬을 로드함.
+        PlayerPrefs.SetInt(Constants.ChapterIndex, index);
         SceneLoader.Instance.LoadScene(SceneNames.Game);
     }
 }

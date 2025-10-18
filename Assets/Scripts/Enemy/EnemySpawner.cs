@@ -1,11 +1,15 @@
+using System.Collections;
 using System.Collections.Generic; // 일반화 리스트 사용 List<T>.
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Tilemaps;
 
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField]
     private Tilemap tilemap;
+    [SerializeField]
+    private GameObject enemySpawnTile;
     [SerializeField]
     private GameObject[] enemyPrefabs;
     [SerializeField]
@@ -14,11 +18,12 @@ public class EnemySpawner : MonoBehaviour
     private GemCollector gemCollector;
     [SerializeField]
     private EntityBase target;
-    [SerializeField]
-    private int enemyCount = 10;
 
     private Vector3 offset = new Vector3(0.5f, 0.5f, 0);
     private List<Vector3> possibleTiles = new List<Vector3>();
+    private MemoryPool enemySpawnTilePool;                      // 타일을 리스트에 저장해두고 생성, 활성, 비활성 관리를 하는 변수.
+    private WaitForSeconds waitTime = new WaitForSeconds(2f);   // 타일 등장 후 적이 생성될 때까지 걸리는 시간.
+    public static UnityEvent exitEvent = new UnityEvent();      // 현재 스테이지에 존재하는 모든 적이 사망했을 때 호출할 메소드를 등록하는 변수.
 
     public static List<EntityBase> Enemies {  get; private set; } = new List<EntityBase>();
 
@@ -35,20 +40,46 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
+        // enemySpawnTilePool이 관리하는 오브젝트를 enemySpawnTile로 설정하고, 메모리를 할당.
+        enemySpawnTilePool = new MemoryPool(enemySpawnTile);
+
         // Tilemap의 Bounds 재설정 (맵을 수정했을 때 Bounds가 변경되지 않는 문제 해결).
         tilemap.CompressBounds();
 
         // 타일맵의 모든 타일을 대상으로 적 배치가 가능한 타일 계산.
         CalculatePossibleTiles();
+    }
 
-        // 임의의 타일에 10명의 적 생성.
-        for (int i = 0; i < enemyCount; ++i)
+    public void SpawnEnemies(int count)
+    {
+        Enemies.Clear();
+        StartCoroutine(nameof(Process), count);
+    }
+
+    private IEnumerator Process(int count)
+    {
+        Vector3[] positions = new Vector3[count];
+        for (int i = 0; i < count; ++i)
+        {
+            // 적을 배치할 임의의 위치 설정.
+            positions[i] = possibleTiles[Random.Range(0, possibleTiles.Count)];
+
+            // 적이 배치될 위치에 타일 생성.
+            enemySpawnTilePool.ActivatePoolItem(positions[i]);
+        }
+
+        yield return waitTime;
+
+        // 모든 타일 삭제.
+        enemySpawnTilePool.DeactivateAllPoolItems();
+
+        // 적 생성.
+        for (int i = 0; i < count; ++i)
         {
             int type = Random.Range(0, enemyPrefabs.Length);
-            int index = Random.Range(0, possibleTiles.Count);
             int wayIndex = Random.Range(0, wayPointData.Length);
 
-            GameObject clone = Instantiate(enemyPrefabs[type], possibleTiles[index], Quaternion.identity, transform);
+            GameObject clone = Instantiate(enemyPrefabs[type], positions[i], Quaternion.identity, transform);
             clone.GetComponent<EnemyBase>().Initialize(this, parentTransform, gemCollector);
             clone.GetComponent<EnemyFSM>().Setup(target, wayPointData[wayIndex].wayPoints);
 
@@ -93,5 +124,11 @@ public class EnemySpawner : MonoBehaviour
 
         // 월드에 있는 적 오브젝트(enemy.gameObject)를 삭제함.
         Destroy(enemy.gameObject);
+
+        if (Enemies.Count == 0)
+        {
+            // 현재 필드에 존재하는 적이 없으면, exitEvent에 등록되어 있는 메소드를 호출함.
+            exitEvent?.Invoke();
+        }
     }
 }

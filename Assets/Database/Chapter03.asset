@@ -21,7 +21,7 @@ MonoBehaviour:
     chapterName: "\uD30C\uBA78\uC758 \uAD11\uC0B0"
   stageDataTable:
     maxStage: 50
-    bestEnemyCount: 12
+    baseEnemyCount: 12
     baseEnemyLevel: 3
     enemyPrefabs:
     - {fileID: 2089747292087986566, guid: 4bf38900d5852b24ca1b2971f294163a, type: 3}

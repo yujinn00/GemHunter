@@ -1232,6 +1232,17 @@ MonoBehaviour:
   x: 1
   y: 1
   z: 0
+--- !u!114 &545466710 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3888881972758137717, guid: 5d53f7bda486c3943a6bfa005456e923, type: 3}
+  m_PrefabInstance: {fileID: 8565647929878167897}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -3305,6 +3316,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ef782bcf84ed54b99b8cf3f04ed02e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chapters:
+  - {fileID: 11400000, guid: 33f32a83d2c4a264cac3a168aaf9209b, type: 2}
+  - {fileID: 11400000, guid: 09c146450add25e4c828de1f47c3b5db, type: 2}
+  - {fileID: 11400000, guid: b5d44d51b2ae94c4197d414509b3bcec, type: 2}
+  enemySpawner: {fileID: 2136680021}
+  textStageNumber: {fileID: 545466710}
+  enemyCountScale: 0.15
 --- !u!4 &1510801894
 Transform:
   m_ObjectHideFlags: 0
@@ -9351,12 +9369,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 1803860998}
+  enemySpawnTile: {fileID: 1135827603263583553, guid: e5b1fc2ef7e49b447b79fe6abbac69ed, type: 3}
   enemyPrefabs:
   - {fileID: 2089747292087986566, guid: 4bf38900d5852b24ca1b2971f294163a, type: 3}
   parentTransform: {fileID: 987144010}
   gemCollector: {fileID: 971608259}
   target: {fileID: 1345785264}
-  enemyCount: 10
   wayPointData:
   - wayPoints:
     - {fileID: 1003427786}
