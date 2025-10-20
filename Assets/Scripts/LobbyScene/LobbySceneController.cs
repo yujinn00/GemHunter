@@ -10,6 +10,8 @@ public class LobbySceneController : MonoBehaviour
     private ChapterData[] allChapter;       // 챕터 오브젝트 생성을 위한 모든 챕터 정보를 담고 있는 배열.
     [SerializeField]
     private SwipeUI swipeUI;                // 현재 선택된 챕터 정보를 불러오기 위한 변수.
+    [SerializeField]
+    private HeartSystem heartSystem;        // 게임을 플레이할 때 하트 사용이 가능한지 검사하고 사용하기 위한 변수.
 
     private void Awake()
     {
@@ -31,6 +33,12 @@ public class LobbySceneController : MonoBehaviour
         {
             // Console View에 텍스트를 출력하고 반환함.
             Logger.Log("현재 잠겨있는 챕터입니다.");
+            return;
+        }
+
+        if (!heartSystem.UseHeart(5))
+        {
+            Logger.Log("하트가 부족합니다.");
             return;
         }
 

@@ -314,6 +314,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 09c146450add25e4c828de1f47c3b5db, type: 2}
   - {fileID: 11400000, guid: b5d44d51b2ae94c4197d414509b3bcec, type: 2}
   swipeUI: {fileID: 950120329}
+  heartSystem: {fileID: 746961305}
 --- !u!4 &471837353
 Transform:
   m_ObjectHideFlags: 0
@@ -542,6 +543,80 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 619394800}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &746961304
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 746961306}
+  - component: {fileID: 746961305}
+  m_Layer: 0
+  m_Name: HeartSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &746961305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746961304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e33e7c4bf8e3748478b65ab54c18c04a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onValueChangedHeart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8747061469827733008}
+        m_TargetAssemblyTypeName: UILobbyTopBar, Assembly-CSharp
+        m_MethodName: UpdateHeart
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onValueChangedTimer:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8747061469827733008}
+        m_TargetAssemblyTypeName: UILobbyTopBar, Assembly-CSharp
+        m_MethodName: UpdateHeartTimer
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!4 &746961306
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746961304}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -1669,10 +1744,91 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1747425052}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1976031731097795621, guid: 62a3425f3a10291469a464f1622b2192, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8747061469827733008}
     - targetCorrespondingSourceObject: {fileID: 8401355137520193830, guid: 62a3425f3a10291469a464f1622b2192, type: 3}
       insertIndex: -1
       addedObject: {fileID: 455872406}
   m_SourcePrefab: {fileID: 100100000, guid: 62a3425f3a10291469a464f1622b2192, type: 3}
+--- !u!114 &8747061469827733002 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2436727060654285619, guid: 62a3425f3a10291469a464f1622b2192, type: 3}
+  m_PrefabInstance: {fileID: 8747061469827733001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8747061469827733003 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1257350207617239375, guid: 62a3425f3a10291469a464f1622b2192, type: 3}
+  m_PrefabInstance: {fileID: 8747061469827733001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8747061469827733004 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1067715362658758265, guid: 62a3425f3a10291469a464f1622b2192, type: 3}
+  m_PrefabInstance: {fileID: 8747061469827733001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8747061469827733005 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1314253296933919024, guid: 62a3425f3a10291469a464f1622b2192, type: 3}
+  m_PrefabInstance: {fileID: 8747061469827733001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8747061469827733006 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5959692271489153799, guid: 62a3425f3a10291469a464f1622b2192, type: 3}
+  m_PrefabInstance: {fileID: 8747061469827733001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &8747061469827733007 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1976031731097795621, guid: 62a3425f3a10291469a464f1622b2192, type: 3}
+  m_PrefabInstance: {fileID: 8747061469827733001}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8747061469827733008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8747061469827733007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eba6eb27023d38846b8e5cbe33d6b2f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelData: {fileID: 11400000, guid: 64c4f639e0638cb48a2583cce6641039, type: 2}
+  textLevel: {fileID: 8747061469827733005}
+  fillGaugeEXP: {fileID: 8747061469827733006}
+  textHeart: {fileID: 8747061469827733004}
+  textHeartTimer: {fileID: 8747061469827733003}
+  textGEMCount: {fileID: 8747061469827733002}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1682,3 +1838,4 @@ SceneRoots:
   - {fileID: 8747061469827733001}
   - {fileID: 1585927087}
   - {fileID: 471837353}
+  - {fileID: 746961306}
