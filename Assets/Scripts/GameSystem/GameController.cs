@@ -10,6 +10,10 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private TextMeshPro textStageNumber;        // 스테이지가 바뀔 때 필드 바닥에 출력되는 스테이지 Text UI 갱신을 위한 변수.
     [SerializeField]
+    private UIRewardResult uiRewardResult;      // 게임 결과 화면 UI를 활성화하고, UI에 데이터 출력을 제어하는 변수.
+    [SerializeField]
+    private PlayerBase player;                  // 플레이어가 현재 챕터에서 획득한 GEM 정보를 불러오기 위한 변수.
+    [SerializeField]
     private float enemyCountScale = 0.15f;      // 스테이지가 증가할 때 생성할 적 숫자 연산에 사용할 변수.
 
     private int currentChapter;                 // 현재 챕터 숫자.
@@ -40,7 +44,7 @@ public class GameController : MonoBehaviour
         // 마지막 스테이지를 클리어했으면, Console View에 텍스트를 출력하고, 메소드를 종료.
         if (currentStage > maxStage)
         {
-            Logger.Log("챕터 클리어");
+            GameClear();
             return;
         }
 
@@ -54,5 +58,57 @@ public class GameController : MonoBehaviour
     public void SetTimeScale(float scale)
     {
         Time.timeScale = scale;
+    }
+
+    public void GameClear()
+    {
+        SetTimeScale(0);
+
+        long baseExp = (long)(currentStage * (5 + (currentChapter + 1) * 1.2f));
+        long bonusExp = (long)Mathf.Pow(2, (currentChapter + 1)) * 100;
+        long bonusGem = (currentChapter + 1) * 5000;
+        bool isNewRecord = Database.DBItem.chapters[currentChapter].bestStage != maxStage;
+
+        // Database 클래스의 DBItem에 데이터를 갱신함.
+        Database.DBItem.player.experience += (baseExp + bonusExp);
+        Database.DBItem.goods.gem += (player.GEM + bonusExp);
+        Database.DBItem.chapters[currentChapter].bestStage = maxStage;
+
+        // 챕터를 클리어했기 때문에 다음 챕터가 존재하면 다음 챕터를 해금함.
+        if (currentChapter + 1 < Database.DBItem.chapters.Length)
+        {
+            Database.DBItem.chapters[currentChapter + 1].isUnlock = true;
+        }
+
+        // DBItem에 저장되어 있는 데이터를 파일에 저장함.
+        Database.Write();
+
+        // 새 기록 여부, 클리어 여부, 챕터, 스테이지, 보상 정보를 전달함 (보상은 원하는 개수만큼 추가 가능).
+        uiRewardResult.OnRewardResult(isNewRecord, true, currentChapter, maxStage,
+            new (RewardType, long)[] { (RewardType.GEM, player.GEM), (RewardType.EXP, baseExp),
+                                       (RewardType.GEM, bonusGem), (RewardType.EXP, bonusExp) }); 
+    }
+
+    public void GameOver()
+    {
+        SetTimeScale(0);
+
+        long exp = (long)(currentStage * (5 + (currentChapter + 1) * 1.2f));
+        bool isNewRecord = Database.DBItem.chapters[currentChapter].bestStage < currentStage;
+
+        // Database 클래스의 DBItem에 데이터를 갱신함.
+        Database.DBItem.player.experience += exp;
+        Database.DBItem.goods.gem += player.GEM;
+        if (isNewRecord)
+        {
+            Database.DBItem.chapters[currentChapter].bestStage = currentStage;
+        }
+
+        // DBItem에 저장되어 있는 데이터를 파일에 저장함.
+        Database.Write();
+
+        // 새 기록 여부, 클리어 여부, 챕터, 스테이지, 보상 정보를 전달함 (보상은 원하는 개수만큼 추가 가능).
+        uiRewardResult.OnRewardResult(isNewRecord, false, currentChapter, currentStage,
+            new (RewardType, long)[] { (RewardType.GEM, player.GEM), (RewardType.EXP, exp) });
     }
 }

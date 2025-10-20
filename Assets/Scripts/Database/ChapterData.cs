@@ -3,26 +3,15 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ChapterData : ScriptableObject
 {
-    // 3개의 커스텀 구조체 선언.
-    [SerializeField]
-    private ChapterDatabase chapterDatabase;
+    // 2개의 커스텀 구조체 선언.
     [SerializeField]
     private ChapterDataTable chapterDataTable;
     [SerializeField]
     private StageDataTable stageDataTable;
 
     // 외부에서 변수에 접근할 수 있도록 Get만 가능한 프로퍼티 정의.
-    public ChapterDatabase ChapterDatabase => chapterDatabase;
     public ChapterDataTable ChapterDataTable => chapterDataTable;
     public StageDataTable StageDataTable => stageDataTable;
-}
-
-// 해당 챕터의 해금 여부와 도달한 최고 스테이지 정보를 저장하는 구조체.
-[System.Serializable]
-public struct ChapterDatabase
-{
-    public bool isUnlock;               // 챕터 해금 여부.
-    public int bestStage;               // 최고 스테이지.
 }
 
 // 해당 챕터의 배경 이미지, 색상, 이름을 저장하는 구조체.

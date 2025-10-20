@@ -9,6 +9,11 @@ public class IntroSceneController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI textPressAnyKey;        // "PRESS ANY KEY" Text UI 깜박임 제어를 위한 변수.
 
+    private void Awake()
+    {
+        Database.Read();
+    }
+
     private IEnumerator Start()
     {
         while (true)

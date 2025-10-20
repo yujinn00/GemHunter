@@ -16,7 +16,7 @@ public class UIChapterIcon : MonoBehaviour
     public void Setup(int index, ChapterData chapterData)
     {
         // 매개변수로 받아온 현재 챕터 정보를 바탕으로 현재 챕터가 잠겨있으면 자물쇠 이미지를 활성화하고, 잠겨있지 않으면 비활성화함.
-        lockedIcon.SetActive(!chapterData.ChapterDatabase.isUnlock);
+        lockedIcon.SetActive(!Database.DBItem.chapters[index].isUnlock);
 
         // 챕터 아이콘 이미지를 현재 챕터의 스프라이트로 설정함.
         imageChapter.sprite = chapterData.ChapterDataTable.spriteChapter;
@@ -24,6 +24,6 @@ public class UIChapterIcon : MonoBehaviour
         // Debug.. 챕터 이미지가 모두 있을 땐 색상 정보는 필요 없음.
         imageChapter.color = chapterData.ChapterDataTable.colorChapter;
         textChapterName.text = $"#{index+1:D2} {chapterData.ChapterDataTable.chapterName}";
-        textStage.text = $"스테이지 {chapterData.ChapterDatabase.bestStage}/{chapterData.StageDataTable.maxStage}";
+        textStage.text = $"스테이지 {Database.DBItem.chapters[index].bestStage}/{chapterData.StageDataTable.maxStage}";
     }
 }

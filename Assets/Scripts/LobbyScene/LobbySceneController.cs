@@ -27,7 +27,7 @@ public class LobbySceneController : MonoBehaviour
         int index = swipeUI.CurrentPage;
 
         // 지금 선택된 챕터가 잠겨있으면 실행함.
-        if (allChapter[index].ChapterDatabase.isUnlock == false)
+        if (Database.DBItem.chapters[index].isUnlock == false)
         {
             // Console View에 텍스트를 출력하고 반환함.
             Logger.Log("현재 잠겨있는 챕터입니다.");
