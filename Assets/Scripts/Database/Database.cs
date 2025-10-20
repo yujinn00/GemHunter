@@ -5,7 +5,7 @@ using UnityEngine;
 public static class Database
 {
     // 데이터 저장/불러오기를 할 파일 이름.
-    public static readonly string DBFileName = "Database.bat";
+    public static readonly string DBFileName = "Database.dat";
     // 현재 게임의 최대 챕터 숫자.
     public static readonly int maxChapter = 3;
 
@@ -77,6 +77,7 @@ public static class Database
 }
 
 // DBItem_Player, DBItem_Goods, DBItem_Chapter를 묶어서 관리하는 클래스.
+[System.Serializable]
 public class DatabaseItem
 {
     public DBItem_Player player;
@@ -129,11 +130,11 @@ public class DBItem_Player
 public class DBItem_Goods
 {
     public int heart;
-    public float heartTimer;        // 하트 충전까지 남은 시간(초).
-    public string heartLastTime;    // 게임 종료 시간.
+    public float heartTimer;                            // 하트 충전까지 남은 시간(초).
+    public string heartLastTime;                        // 게임 종료 시간.
     public float gem;
 
-    public readonly int maxHeart = 50;      // 최대 하트 개수.
+    public readonly int maxHeart = 50;                  // 최대 하트 개수.
     public readonly float heartRefillTime = 20 * 60;    // 하트 회복 시간(초): 20분.
 
     public void Reset()
@@ -149,10 +150,8 @@ public class DBItem_Goods
 [System.Serializable]
 public class DBItem_Chapter
 {
-    public bool isUnlock;   // 챕터 해금 여부
-    public int bestStage;   // 현재 챕터에서 도달한 최고 스테이지.
-    public string heartLastTime;    // 게임 종료 시간.
-    public float gem;
+    public bool isUnlock;           // 챕터 해금 여부
+    public int bestStage;           // 현재 챕터에서 도달한 최고 스테이지.
 
     public void Reset()
     {

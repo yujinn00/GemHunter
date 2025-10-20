@@ -71,7 +71,7 @@ public class GameController : MonoBehaviour
 
         // Database 클래스의 DBItem에 데이터를 갱신함.
         Database.DBItem.player.experience += (baseExp + bonusExp);
-        Database.DBItem.goods.gem += (player.GEM + bonusExp);
+        Database.DBItem.goods.gem += (player.GEM + bonusGem);
         Database.DBItem.chapters[currentChapter].bestStage = maxStage;
 
         // 챕터를 클리어했기 때문에 다음 챕터가 존재하면 다음 챕터를 해금함.

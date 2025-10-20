@@ -16694,9 +16694,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 305807529}
     m_Modifications:
+    - target: {fileID: 321151794481245638, guid: 09ff3d8336ab3ea4a94eebd515c59c03, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3648698215688908060, guid: 09ff3d8336ab3ea4a94eebd515c59c03, type: 3}
       propertyPath: m_Name
       value: Popup_RewardResult
+      objectReference: {fileID: 0}
+    - target: {fileID: 3648698215688908060, guid: 09ff3d8336ab3ea4a94eebd515c59c03, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6973262191187948908, guid: 09ff3d8336ab3ea4a94eebd515c59c03, type: 3}
       propertyPath: m_Pivot.x

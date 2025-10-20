@@ -41,7 +41,7 @@ public class UIRewardResult : MonoBehaviour
         textStage.text = stage.ToString();
 
         UIRewardIcon item;
-        for (int i = 0; i < rewards.Length; ++i)
+        for (int i = 0; i < items.Length; ++i)
         {
             // 보상 아이콘 오브젝트 생성 (각각 GEM, EXP, ITEM).
             item = Instantiate(rewards[(int)items[i].Item1], rewardParent);
