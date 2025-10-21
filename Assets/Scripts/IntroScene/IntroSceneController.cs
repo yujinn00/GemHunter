@@ -11,6 +11,9 @@ public class IntroSceneController : MonoBehaviour
 
     private void Awake()
     {
+        // 게임의 프레임을 60으로 설정함.
+        Application.targetFrameRate = 60;
+
         Database.Read();
     }
 
